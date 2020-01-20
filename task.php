@@ -1,36 +1,44 @@
 <?php
 
-class Task {
+class Person {
 
-    public $title;
+    public $name;
 
-    public $description;
+    public $age;
 
-    public $completed = false;
+    public function __construct($name) {
 
-    public function __construct($title, $description) {
-
-        $this->title = $title;
-
-        $this->description = $description;
-    }
-
-    public function complete() {
-
-        $this->completed = true;
+        $this->name = $name;
 
     }
+
+    public function getAge()
+    {
+
+       return $this->age * 365;
+
+    }
+
+    public function setAge($age) {
+
+        if($age <18) {
+
+            throw new Exception ("Person is not old enough");
+
+        }
+
+        $this->age = $age;
+
+    }
+
 }
 
-$task = new Task('OOP', 'Learn OOP via argument');
+$john = new Person('Billy Jones');
 
-$task2 = new Task('Go to bank', 'Need to open new account');
+$john->setAge(31);
 
-$task->complete();
+$john->age= 1;
 
-var_dump($task2->description);
-
-
-// var_dump($task2->description);
+var_dump($john->getAge());
 
 
