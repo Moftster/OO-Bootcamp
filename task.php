@@ -1,48 +1,71 @@
 <?php
 
-class Person {
+abstract class Shape {
 
-    private $name;
+    protected $color;
 
-    private $age;
-
-    public function __construct($name) {
-
-        $this->name = $name;
-
-    }
-
-    public function getAge()
+    public function __construct($color = "red")
     {
-
-       return $this->age * 365;
-
+        $this->color = $color;
     }
 
-    public function setAge($age) {
+    public function getColor()
+    {
+        return $this->color;
+    }
 
-        if($age <18) {
+    // abstract protected function getArea();
 
-            throw new Exception ("Person is not old enough");
+}
 
-        }
+class Square extends Shape {
 
-        $this->age = $age;
+    protected $length = 4;
+
+    public function getArea() {
+
+        return pow($this->length, 2);
+
+    }
+}
+
+class Triangle extends Shape {
+
+    protected $base = 4;
+
+    protected $height = 7;
+
+    public function getArea() {
+
+        return .5 * $this->base * $this->height;
 
     }
 
 }
+class Circle extends Shape {
 
-$john = new Person('Billy Jones');
+    protected $radius = 5;
+   
 
-$john->setAge(31);
+    public function getArea() 
+    {
+        return pi() * pow($this->radius, 2);
+    }
 
-$john->age = 3;
+}
 
-$john->name = "Not John";
+// echo (new Circle)->getArea();
 
-var_dump($john->getAge());
+// echo (new Triangle)->getArea();
 
-// var_dump($john->name);
+// echo (new Circle('Green'))->getArea();
 
+// echo (new Square())->getColor();
 
+$circle = new Circle;
+
+// echo $circle->getArea();
+
+// echo (new Circle)->getArea();
+
+echo (new Square)->getArea();
