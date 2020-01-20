@@ -1,71 +1,63 @@
 <?php
 
-abstract class Shape {
+class Person {
 
-    protected $color;
+    protected $name;
 
-    public function __construct($color = "red")
+    public function __construct($name)
     {
-        $this->color = $color;
+        $this->name = $name;
     }
 
-    public function getColor()
+}
+
+class Business {
+
+    protected $staff;
+
+    public function __construct(Staff $staff) 
     {
-        return $this->color;
+        $this->staff = $staff;
     }
 
-    // abstract protected function getArea();
-
-}
-
-class Square extends Shape {
-
-    protected $length = 4;
-
-    public function getArea() {
-
-        return pow($this->length, 2);
-
-    }
-}
-
-class Triangle extends Shape {
-
-    protected $base = 4;
-
-    protected $height = 7;
-
-    public function getArea() {
-
-        return .5 * $this->base * $this->height;
-
-    }
-
-}
-class Circle extends Shape {
-
-    protected $radius = 5;
-   
-
-    public function getArea() 
+    public function hire(Person $person)
     {
-        return pi() * pow($this->radius, 2);
+        // add $person to the staff colleciton
+
+        $this->staff->add($person);
+    }
+
+    public function getStaffMembers() {
+        return $this->staff->members();
     }
 
 }
 
-// echo (new Circle)->getArea();
+class Staff {
 
-// echo (new Triangle)->getArea();
+    protected $members = [];
 
-// echo (new Circle('Green'))->getArea();
+    public function __construct ($members = []) {
+        $this->members = $members;
+    }
 
-// echo (new Square())->getColor();
+    public function add(Person $person) {
+        $this->members[] = $person;
+    }
 
-$circle = new Circle;
+    public function members() {
+        return $this->members;
+    }
+}
 
-// echo $circle->getArea();
+$jeffrey = new Person("Jeffrey Way");
 
-// echo (new Circle)->getArea();
+$staff = new Staff([$jeffrey]);
 
-echo (new Square)->getArea();
+$laracasts = new Business($staff);
+
+// $laracasts->hire($jeffrey);
+
+$laracasts->hire(new Person('Jane Doe'));
+
+var_dump($laracasts->getStaffMembers());
