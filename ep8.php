@@ -1,46 +1,26 @@
 <?php
 
-interface Logger {
-    public function execute($message);
+interface CanBeFlitered {
+    public function filter();
 }
 
-class logToFile implements Logger {
-
-    public function execute($message) {
-        var_dump('The message to a file ' . $message);
-    }
-
-}
-
-class logToDatabase implements Logger {
-
-    public function execute($message) {
-        var_dump('The message to a database ' . $message);
-    }
-
-}
-
-
-// 
-
-class UsersController {
-
-    protected $logger;
-
-    public function __construct(Logger $logger)
+class Favourited implements CanBeFiltered {
+    public function filter()
     {
-        $this->logger = $logger;
-    } 
-
-    public function show()
-    {
-        $user = 'JohnDoe';
-
-        $this->logger->execute($user);
 
     }
 }
 
-$controller = new UsersController(new logToDatabase);
+class NotRead implements CanBeFiltered {
+    public function filter()
+    {
 
-$controller->show();
+    }
+}
+
+class Difficulty implements CanBeFiltered {
+    public function filter()
+    {
+
+    }
+}
