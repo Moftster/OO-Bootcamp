@@ -1,26 +1,22 @@
 <?php
 
-interface CanBeFlitered {
-    public function filter();
+interface Provider {
+
+    public function getAuthorisationUrl();
+
 }
 
-class Favourited implements CanBeFiltered {
-    public function filter()
+abstract class Provider {
+    protected function related()
     {
 
     }
 }
 
-class NotRead implements CanBeFiltered {
-    public function filter()
-    {
+class FacebookProvider implements Provider {
+
+    protected function getAuthorisationUrl() {
 
     }
-}
 
-class Difficulty implements CanBeFiltered {
-    public function filter()
-    {
-
-    }
 }
