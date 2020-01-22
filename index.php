@@ -2,8 +2,6 @@
 
 require 'vendor/autoload.php';
 
-$registration = new PracticeProject\RegisterUser;
+$person = new Person;
 
-$authController = new PracticeProject\AuthController($registration);
-
-$authController->register();
+var_dump($person);
