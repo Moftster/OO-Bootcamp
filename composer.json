@@ -1,7 +1,5 @@
 {
     "autoload": {
-        "psr-4": {
-            "MyProject\\": "src"
-        }
+        "psr-4": {"CarsProject\\": "src/"}
     }
 }
